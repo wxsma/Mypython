@@ -2,6 +2,7 @@
 
 import urllib2
 import re
+import sys
 
 class budejie(object):
     """docstring for budejie"""
@@ -16,7 +17,8 @@ class budejie(object):
         request = urllib2.Request(url,headers = header)
         try:
             hpage = urllib2.urlopen(request)
-            return hpage.read()
+            encode = sys.getfilesystemencoding()
+            return hpage.read().encode(encode)
         except urllib2.URLError as e:
             if hasattr(e,'code'):
                 print e.code
